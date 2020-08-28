@@ -1,26 +1,26 @@
 <template>
   <div id="app">
     <game
-      @H_name="h_name"
-      @H_hp="h_hp"
-      @H_image="h_image"
-      @M_name="m_name"
-      @M_hp="m_hp"
-      @M_image="m_image"
-      @P_atk="p_atk"
-      @M_atk="m_atk"
-      @P_SATK="p_satk"
-      @M_SPATK="m_satk"
+      @N_name="H_name"
+      @N_hp="H_hp"
+      @N_image="H_image"
+      @G_name="M_name"
+      @G_hp="M_hp"
+      @G_image="M_image"
+      @P_at="P_at"
+      @M_at="M_at"
+      @P_SATK="P_Satk"
+      @M_SPATK="M_Satk"
     ></game>
     <div class="row">
       <div class="col-md-4">
         <h1>
-          NAME :{{he_name}}
+          NAME : {{The_name}}
           <br />
-          HP : {{he_hp}}
+          HP : {{het_hp}}
         </h1>
         <div>
-          <img :src="h_img" alt class="img-fluid image" :width="he_hp + 'vw' " />
+          <img :src="L_img" alt class="img-fluid image" :width="het_hp + 'vw' " />
         </div>
       </div>
       <div class="col-md-4">
@@ -28,18 +28,18 @@
       </div>
       <div class="col-md-4">
         <h1>
-          NAME :{{mon_name}}
+          NAME : {{oon_name}}
           <br />
           HP : {{mon_hp}}
         </h1>
         <div>
-          <img :src="m_img" alt class="img-fluid image" :width="mon_hp + 'vw' " />
+          <img :src="G_img" alt class="img-fluid image" :width="mon_hp + 'vw' " />
         </div>
       </div>
     </div>
 
     <modal
-      v-if="he_hp <= 0 && mon_hp > 0 && he_name != ''"
+      v-if="het_hp <= 0 && mon_hp > 0 && The_name != ''"
       @$reset="$reset"
       @reset="reset"
       @close="showModal = false"
@@ -48,7 +48,7 @@
     </modal>
 
     <modal
-      v-if="mon_hp <= 0 && he_hp > 0 && he_name != ''"
+      v-if="mon_hp <= 0 && het_hp > 0 && The_name != ''"
       @$reset="$reset"
       @reset="reset"
       @close="showModal = false"
@@ -57,7 +57,7 @@
     </modal>
 
     <modal
-      v-if="(he_hp<=0 && mon_hp <= 0 ) && he_name != ''"
+      v-if="(het_hp<=0 && mon_hp <= 0 ) && The_name != ''"
       v-bind="reset"
       @$reset="$reset"
       @reset="reset"
@@ -79,65 +79,65 @@ export default {
   },
   data: function () {
     return {
-      he_name: "",
-      mon_name: "",
-      he_hp: 0,
+      The_name: "",
+      oon_name: "",
+      het_hp: 0, 
       mon_hp: 0,
       attack: 0,
-      h_img: "",
-      m_img: "",
+      L_img: "",
+      G_img: "",
     };
   },
   methods: {
-    h_name(value) {
-      this.he_name = value;
-      console.log("emit", this.he_name);
+    H_name(value) {
+      this.The_name = value;
+      console.log("emit", this.The_name);
     },
-    h_hp(value) {
-      this.he_hp = value;
-      console.log("emit", this.he_hp);
+    H_hp(value) {
+      this.het_hp = value;
+      console.log("emit", this.het_hp); 
     },
-    h_image(value) {
-      this.h_img = value;
-      console.log("emit", this.h_img);
+    H_image(value) {
+      this.L_img = value;
+      console.log("emit", this.L_img);
     },
     //monster
-    m_name(value) {
-      this.mon_name = value;
+    M_name(value) {
+      this.oon_name = value;
     },
-    m_hp(value) {
+    M_hp(value) {
       this.mon_hp = value;
     },
-    m_image(value) {
-      this.m_img = value;
+    M_image(value) {
+      this.G_img = value;
     },
     //attack hero
-    p_atk(value) {
+    P_at(value) {
       this.attack = value;
       this.mon_hp -= this.attack;
       console.log("emit", this.mon_hp);
     },
-    p_satk(value) {
+    P_Satk(value) {
       this.attack = value;
       this.mon_hp -= this.attack;
     },
     //attack monster
-    m_atk(value) {
+    M_at(value) {
       this.attack = value;
-      this.he_hp -= this.attack;
+      this.het_hp -= this.attack;
     },
-    m_satk(value) {
+    M_Satk(value) {
       this.attack = value;
-      this.he_hp -= this.attack;
+      this.het_hp -= this.attack;
     },
     $reset(value) {
-      this.he_name = value;
-      this.mon_name = value;
+      this.The_name = value;
+      this.oon_name = value;
       this.h_img = value;
       this.m_img = value;
     },
     reset(value) {
-      this.he_hp = value;
+      this.het_hp = value;
       this.mon_hp = value;
     },
   },

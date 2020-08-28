@@ -43,41 +43,41 @@ export default {
       this.mmonster = this.randomNO(1, 5) - 1;
 
       this.name_player = this.player[this.aplayer].name;
-      this.$emit("H_name", this.name_player);
+      this.$emit("N_name", this.name_player);
       console.log("emit", this.name_player);
       this.hp_player = this.player[this.aplayer].hp;
-      this.$emit("H_hp", this.hp_player);
+      this.$emit("N_hp", this.hp_player);
       console.log("hp", this.hp_player);
       this.image_player = this.player[this.aplayer].image;
-      this.$emit("H_image", this.image_player);
+      this.$emit("N_image", this.image_player);
       console.log("im", this.image_player);
 
       this.name_monster = this.monster[this.mmonster].name;
       console.log("emit", this.name_monster);
-      this.$emit("M_name", this.name_monster);
+      this.$emit("G_name", this.name_monster);
       this.hp_monster = this.monster[this.mmonster].hp;
-      this.$emit("M_hp", this.hp_monster);
+      this.$emit("G_hp", this.hp_monster);
       this.image_monster = this.monster[this.mmonster].image;
-      this.$emit("M_image", this.image_monster);
+      this.$emit("G_image", this.image_monster);
     },
     Attack: function () {
-      this.atk = this.randomNO(3, 10);
-      this.$emit("P_atk", this.atk);
-      console.log("Attack :", this.atk);
+      this.at = this.randomNO(3, 10);
+      this.$emit("P_at", this.at);
+      console.log("Attack :", this.at);
 
-      this.atk = this.randomNO(3, 10);
-      this.$emit("M_atk", this.atk);
-      console.log("Atk back" ,this.atk);
- 
+      this.at = this.randomNO(3, 10);
+      this.$emit("M_at", this.at);
+      console.log("Atk back" ,this.at);
+                                                        
     },
     Special: function () {
-      this.s_atk = this.randomNO(10, 20);
-      this.$emit("P_SATK", this.s_atk);
-      console.log("Special Attack :", this.s_atk);
+      this.A_atk = this.randomNO(10, 20);
+      this.$emit("P_SATK", this.A_atk);
+      console.log("Special Attack :", this.A_atk);
 
-      this.s_atk = this.randomNO(10, 20);
-      this.$emit("M_SPATK", this.s_atk);
-      console.log("SPATK back", this.s_atk);
+      this.A_atk = this.randomNO(10, 20);
+      this.$emit("M_SPATK", this.A_atk);
+      console.log("SPATK back", this.A_atk);
     },
   },
 };
