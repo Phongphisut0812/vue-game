@@ -14,29 +14,67 @@
     ></game>
     <div class="row">
       <div class="col-md-4">
-        <h1>NAME :{{he_name}} <br> HP : {{he_hp}}</h1>
+        <h1>
+          NAME :{{he_name}}
+          <br />
+          HP : {{he_hp}}
+        </h1>
         <div>
           <img :src="h_img" alt class="img-fluid image" :width="he_hp + 'vw' " />
         </div>
       </div>
       <div class="col-md-4">
-        <img src ="./assets/vs.png"  />
+        <img src="./assets/vs.png" />
       </div>
       <div class="col-md-4">
-        <h1>NAME :{{mon_name}} <br> HP : {{mon_hp}}</h1>
+        <h1>
+          NAME :{{mon_name}}
+          <br />
+          HP : {{mon_hp}}
+        </h1>
         <div>
           <img :src="m_img" alt class="img-fluid image" :width="mon_hp + 'vw' " />
         </div>
       </div>
     </div>
+
+    <modal
+      v-if="he_hp <= 0 && mon_hp > 0 && he_name != ''"
+      @$reset="$reset"
+      @reset="reset"
+      @close="showModal = false"
+    >
+      <h1 slot="body">YOU LOUSE</h1>
+    </modal>
+
+    <modal
+      v-if="mon_hp <= 0 && he_hp > 0 && he_name != ''"
+      @$reset="$reset"
+      @reset="reset"
+      @close="showModal = false"
+    >
+      <h1 slot="body">YOU WIN</h1>
+    </modal>
+
+    <modal
+      v-if="(he_hp<=0 && mon_hp <= 0 ) && he_name != ''"
+      v-bind="reset"
+      @$reset="$reset"
+      @reset="reset"
+      @close="showModal = false"
+    >
+      <h1 slot="body">DRAW</h1>
+    </modal>
   </div>
 </template>
 
 <script>
+import modal from "./components/check";
 import game from "./components/game.vue";
 export default {
   name: "App",
   components: {
+    modal,
     game,
   },
   data: function () {
@@ -92,6 +130,16 @@ export default {
       this.attack = value;
       this.he_hp -= this.attack;
     },
+    $reset(value) {
+      this.he_name = value;
+      this.mon_name = value;
+      this.h_img = value;
+      this.m_img = value;
+    },
+    reset(value) {
+      this.he_hp = value;
+      this.mon_hp = value;
+    },
   },
 };
 </script>
@@ -104,10 +152,5 @@ export default {
   text-align: center;
   color: #ffffff;
 }
-.playGameScreen {
-  background-image: url("");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  height: 100vh;
-}
+ 
 </style>
