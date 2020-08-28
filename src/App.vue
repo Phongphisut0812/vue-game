@@ -14,7 +14,7 @@
     ></game>
     <div class="row">
       <div class="col-md-4">
-        <h1>NAME :{{he_name}} HP : {{he_hp}}</h1>
+        <h1>NAME :{{he_name}} <br> HP : {{he_hp}}</h1>
         <div>
           <img :src="h_img" alt class="img-fluid image" :width="he_hp + 'vw' " />
         </div>
@@ -23,7 +23,7 @@
         <img src ="./assets/vs.png"  />
       </div>
       <div class="col-md-4">
-        <h1>NAME :{{mon_name}} HP : {{mon_hp}}</h1>
+        <h1>NAME :{{mon_name}} <br> HP : {{mon_hp}}</h1>
         <div>
           <img :src="m_img" alt class="img-fluid image" :width="mon_hp + 'vw' " />
         </div>
